@@ -1,6 +1,7 @@
 #include <array>
 #include <cassert>
 #include <iostream>
+#include <sstream>
 #include <ostream>
 #include <stdexcept>
 #include <string>
@@ -100,21 +101,27 @@ int main(int argc, char * * argv) {
 
   for(auto const& block : blocks){
     auto const& name = block.name;
-    decltype(name)  const label = "block:";
-    write_obj_(name, label, exo::surface_of_tets(block.tets));
+    auto const& id = block.id;
+    std::stringstream label;
+    label << "block:" << id << ":";
+    write_obj_(name, label.str(), exo::surface_of_tets(block.tets));
   }
 
   auto const all_tets = cat_tet_blocks(blocks);
 
   for(auto const& node_set : get_node_sets(exo_file)){
     auto const& name = node_set.name;
-    decltype(name) const label = "nodeset:";
-    write_obj_(name, label, exo::surface_of_nodes_in_tets(node_set.node_inds, all_tets));
+    auto const& id = node_set.id;
+    std::stringstream label;
+    label << "nodeset:" << id << ":";
+    write_obj_(name, label.str(), exo::surface_of_nodes_in_tets(node_set.node_inds, all_tets));
   }
 
   for(auto const& side_set : get_side_sets(exo_file)){
     auto const& name = side_set.name;
-    decltype(name)  const label = "sideset:";
-    write_obj_(name, label, exo::surface_of_sides_in_tets(side_set.sides, all_tets));
+    auto const& id = side_set.id;
+    std::stringstream label;
+    label << "sideset:" << id << ":";
+    write_obj_(name, label.str(), exo::surface_of_sides_in_tets(side_set.sides, all_tets));
   }
 }
