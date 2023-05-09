@@ -4,6 +4,8 @@
 #include <cstring>
 #include <memory>
 
+#include  <random>
+
 #include "msc/utils_publishable.h"
 
 namespace msc {
