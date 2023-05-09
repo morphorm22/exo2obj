@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <memory>
+#include <limits>
 
 #include "msc/utils_publishable.h"
 
