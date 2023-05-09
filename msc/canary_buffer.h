@@ -3,6 +3,8 @@
 
 #include <cstring>
 #include <memory>
+#include <limits>
+#include <random>
 
 #include "msc/utils_publishable.h"
 
